@@ -1,9 +1,11 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAdminUser
 from rest_framework.viewsets import ModelViewSet
 
 from movie.models import Director, Actor, Movie
 from movie.serializers import DirectorSerializer, ActorSerializer, MovieListSerializer, MovieDetailSerializer, \
     MovieSerializer
+from movie.service import MovieFilter
 
 
 class DirectorViewSet(ModelViewSet):
@@ -28,6 +30,8 @@ class ActorViewSet(ModelViewSet):
 
 class MovieViewSet(ModelViewSet):
     queryset = Movie.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = MovieFilter
 
     def get_serializer_class(self):
         if self.action == "list":
