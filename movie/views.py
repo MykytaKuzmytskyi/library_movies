@@ -1,3 +1,4 @@
+from rest_framework.permissions import IsAdminUser
 from rest_framework.viewsets import ModelViewSet
 
 from movie.models import Director, Actor, Movie
@@ -9,10 +10,20 @@ class DirectorViewSet(ModelViewSet):
     queryset = Director.objects.all()
     serializer_class = DirectorSerializer
 
+    def get_permissions(self):
+        if self.action in ["create", "update", "delete"]:
+            self.permission_classes = [IsAdminUser, ]
+        return super().get_permissions()
+
 
 class ActorViewSet(ModelViewSet):
     queryset = Actor.objects.all()
     serializer_class = ActorSerializer
+
+    def get_permissions(self):
+        if self.action in ["create", "update", "delete"]:
+            self.permission_classes = [IsAdminUser, ]
+        return super().get_permissions()
 
 
 class MovieViewSet(ModelViewSet):
@@ -26,3 +37,8 @@ class MovieViewSet(ModelViewSet):
             return MovieDetailSerializer
 
         return MovieSerializer
+
+    def get_permissions(self):
+        if self.action in ["create", "update", "delete"]:
+            self.permission_classes = [IsAdminUser, ]
+        return super().get_permissions()
