@@ -1,3 +1,14 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+from movie.models import Director, Actor
+from movie.serializers import DirectorSerializer, ActorSerializer
+
+
+class DirectorViewSet(ModelViewSet):
+    queryset = Director.objects.all()
+    serializer_class = DirectorSerializer
+
+
+class ActorViewSet(ModelViewSet):
+    queryset = Actor.objects.all()
+    serializer_class = ActorSerializer
