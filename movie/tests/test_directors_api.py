@@ -17,10 +17,7 @@ def detail_url(director_id):
 
 def create_directors(num_directors):
     for i in range(num_directors):
-        actor_data = {
-            "first_name": f"First Name {i}",
-            "last_name": f"Last Name {i}"
-        }
+        actor_data = {"first_name": f"First Name {i}", "last_name": f"Last Name {i}"}
         Director.objects.create(**actor_data)
 
 
@@ -37,8 +34,8 @@ class UnauthenticatedDirectorApiTests(TestCase):
         serializer = DirectorSerializer(directors, many=True)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data['count'], len(serializer.data))
-        self.assertEqual(res.data['results'], serializer.data)
+        self.assertEqual(res.data["count"], len(serializer.data))
+        self.assertEqual(res.data["results"], serializer.data)
 
     def test_get_director_detail(self):
         create_directors(2)
@@ -99,8 +96,8 @@ class AdminDirectorApiTests(TestCase):
         serializer = DirectorSerializer(directors, many=True)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data['count'], len(serializer.data))
-        self.assertEqual(res.data['results'], serializer.data)
+        self.assertEqual(res.data["count"], len(serializer.data))
+        self.assertEqual(res.data["results"], serializer.data)
 
     def test_get_director_detail(self):
         create_directors(2)

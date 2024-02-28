@@ -17,10 +17,7 @@ def detail_url(movie_id):
 
 def create_actors(num_actors):
     for i in range(num_actors):
-        actor_data = {
-            "first_name": f"First Name {i}",
-            "last_name": f"Last Name {i}"
-        }
+        actor_data = {"first_name": f"First Name {i}", "last_name": f"Last Name {i}"}
         Actor.objects.create(**actor_data)
 
 
@@ -37,8 +34,8 @@ class UnauthenticatedMovieApiTests(TestCase):
         serializer = ActorSerializer(actors, many=True)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data['count'], len(serializer.data))
-        self.assertEqual(res.data['results'], serializer.data)
+        self.assertEqual(res.data["count"], len(serializer.data))
+        self.assertEqual(res.data["results"], serializer.data)
 
     def test_get_actor_detail(self):
         create_actors(2)
@@ -99,8 +96,8 @@ class AdminActorApiTests(TestCase):
         serializer = ActorSerializer(actors, many=True)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data['count'], len(serializer.data))
-        self.assertEqual(res.data['results'], serializer.data)
+        self.assertEqual(res.data["count"], len(serializer.data))
+        self.assertEqual(res.data["results"], serializer.data)
 
     def test_get_actor_detail(self):
         create_actors(2)

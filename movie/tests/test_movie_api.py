@@ -24,7 +24,9 @@ def create_movies(num_movies):
             actor1 = Actor.objects.create(first_name=f"A {num}", last_name=f"B {num}")
             actor2 = Actor.objects.create(first_name=f"C {num}", last_name=f"D {num}")
 
-            director = Director.objects.create(first_name=f"A {num}", last_name=f"B {num}")
+            director = Director.objects.create(
+                first_name=f"A {num}", last_name=f"B {num}"
+            )
             movie = Movie.objects.create(
                 title=f"Title {num}",
                 year=1900 + num,
@@ -46,7 +48,7 @@ class UnauthenticatedMovieApiTests(TestCase):
 
         res = self.client.get(MOVIE_URL)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data['count'], len(serializer.data))
+        self.assertEqual(res.data["count"], len(serializer.data))
 
     def test_filter_by_year(self):
         create_movies(15)
@@ -135,7 +137,6 @@ class AdminMovieApiTests(TestCase):
         payload = {
             "title": "tile",
             "year": 2020,
-
         }
 
         url = detail_url(1)

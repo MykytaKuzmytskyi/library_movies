@@ -3,8 +3,13 @@ from rest_framework.permissions import IsAdminUser
 from rest_framework.viewsets import ModelViewSet
 
 from movie.models import Director, Actor, Movie
-from movie.serializers import DirectorSerializer, ActorSerializer, MovieListSerializer, MovieDetailSerializer, \
-    MovieSerializer
+from movie.serializers import (
+    DirectorSerializer,
+    ActorSerializer,
+    MovieListSerializer,
+    MovieDetailSerializer,
+    MovieSerializer,
+)
 from movie.service import MovieFilter
 
 
@@ -13,8 +18,10 @@ class DirectorViewSet(ModelViewSet):
     serializer_class = DirectorSerializer
 
     def get_permissions(self):
-        if self.action in ["create", "update", "delete"]:
-            self.permission_classes = [IsAdminUser, ]
+        if self.action in ["create", "update", "destroy"]:
+            self.permission_classes = [
+                IsAdminUser,
+            ]
         return super().get_permissions()
 
 
@@ -23,8 +30,10 @@ class ActorViewSet(ModelViewSet):
     serializer_class = ActorSerializer
 
     def get_permissions(self):
-        if self.action in ["create", "update", "delete"]:
-            self.permission_classes = [IsAdminUser, ]
+        if self.action in ["create", "update", "destroy"]:
+            self.permission_classes = [
+                IsAdminUser,
+            ]
         return super().get_permissions()
 
 
@@ -43,6 +52,8 @@ class MovieViewSet(ModelViewSet):
         return MovieSerializer
 
     def get_permissions(self):
-        if self.action in ["create", "update", "delete"]:
-            self.permission_classes = [IsAdminUser, ]
+        if self.action in ["create", "update", "destroy"]:
+            self.permission_classes = [
+                IsAdminUser,
+            ]
         return super().get_permissions()

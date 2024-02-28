@@ -7,8 +7,11 @@ class Person(models.Model):
 
     class Meta:
         abstract = True
-        unique_together = ('first_name', 'last_name',)
-        ordering = ("first_name", )
+        unique_together = (
+            "first_name",
+            "last_name",
+        )
+        ordering = ("first_name",)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -36,4 +39,7 @@ class Movie(models.Model):
         return f"{self.title} - ({self.year})"
 
     class Meta:
-        unique_together = ('title', 'year',)
+        unique_together = (
+            "title",
+            "year",
+        )

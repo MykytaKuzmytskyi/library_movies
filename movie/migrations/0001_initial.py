@@ -7,47 +7,70 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Actor',
+            name="Actor",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=255)),
-                ('last_name', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=255)),
+                ("last_name", models.CharField(max_length=255)),
             ],
             options={
-                'ordering': ('first_name',),
-                'abstract': False,
-                'unique_together': {('first_name', 'last_name')},
+                "ordering": ("first_name",),
+                "abstract": False,
+                "unique_together": {("first_name", "last_name")},
             },
         ),
         migrations.CreateModel(
-            name='Director',
+            name="Director",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=255)),
-                ('last_name', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=255)),
+                ("last_name", models.CharField(max_length=255)),
             ],
             options={
-                'ordering': ('first_name',),
-                'abstract': False,
-                'unique_together': {('first_name', 'last_name')},
+                "ordering": ("first_name",),
+                "abstract": False,
+                "unique_together": {("first_name", "last_name")},
             },
         ),
         migrations.CreateModel(
-            name='Movie',
+            name="Movie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=2550)),
-                ('year', models.PositiveIntegerField()),
-                ('actors', models.ManyToManyField(to='movie.actor')),
-                ('directors', models.ManyToManyField(to='movie.director')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=2550)),
+                ("year", models.PositiveIntegerField()),
+                ("actors", models.ManyToManyField(to="movie.actor")),
+                ("directors", models.ManyToManyField(to="movie.director")),
             ],
             options={
-                'unique_together': {('title', 'year')},
+                "unique_together": {("title", "year")},
             },
         ),
     ]
