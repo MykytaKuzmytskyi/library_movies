@@ -4,7 +4,7 @@ from rest_framework import routers
 from movie.views import ActorViewSet, DirectorViewSet, MovieViewSet
 
 router = routers.DefaultRouter()
-router.register("director", DirectorViewSet)
+router.register("directors", DirectorViewSet)
 router.register("actors", ActorViewSet)
 router.register("movies", MovieViewSet)
 
